@@ -6,8 +6,29 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/filippoferri/masterclass.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/filippoferri/masterclass/issues"
+  },
+  "homepage": "https://github.com/filippoferri/masterclass#readme",
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "next": "^13.4.19",
+    "next-auth": "^4.24.11",
+    "prisma": "^6.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.3.3"
+  }
 }
