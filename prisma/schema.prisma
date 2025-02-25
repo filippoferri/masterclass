@@ -1,0 +1,35 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  password String
+  role     Role
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Masterclass {
+  id           String   @id @default(uuid())
+  title        String
+  subtitle     String
+  videoLink    String
+  imageLink    String?     // Optional if you want
+  time         String       // Only the time, e.g. "14:00"
+  duration     Int
+  actionGuide  String?      // Optional PDF link
+  topics       String[]     // For up to 5 topics
+  interactions String       // JSON content for interactions
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}

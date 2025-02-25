@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "ts-node --project tsconfig.seed.json prisma/seed.ts"
   },
   "repository": {
     "type": "git",
@@ -13,22 +17,29 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/filippoferri/masterclass/issues"
   },
   "homepage": "https://github.com/filippoferri/masterclass#readme",
   "dependencies": {
+    "@codemirror/lang-json": "^6.0.1",
     "@prisma/client": "^6.4.1",
+    "@uiw/react-codemirror": "^4.23.8",
+    "bcryptjs": "^3.0.2",
     "next": "^13.4.19",
     "next-auth": "^4.24.11",
     "prisma": "^6.4.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "swr": "^2.3.2"
   },
   "devDependencies": {
+    "@types/node": "22.13.5",
+    "@types/react": "19.0.10",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.3",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "5.7.3"
   }
 }

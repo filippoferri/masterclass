@@ -1,0 +1,13 @@
+    {
+        "extends": "./tsconfig.json", // Reuse common settings
+        "compilerOptions": {
+        // Override just the module setting for Node scripts
+        "module": "CommonJS",
+        // Must remain true for easier default imports
+        "esModuleInterop": true,
+    
+        // Because "noEmit": true is in your base config,
+        // override it so "ts-node" can run the code.
+        "noEmit": false
+        }
+    }
