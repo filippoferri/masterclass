@@ -1,7 +1,24 @@
-import NextAuth, { AuthOptions } from "next-auth";
+import NextAuth, { AuthOptions, DefaultSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+
+// Extend NextAuth types
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      role: string;
+    } & DefaultSession["user"];
+  }
+
+  interface JWT {
+    id: string;
+    email: string;
+    role: string;
+  }
+}
 
 const prisma = new PrismaClient();
 
@@ -45,12 +62,14 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (token?.role) {
-        session.user.role = token.role;
+        session.user.role = token.role; // ✅ Now TypeScript recognizes role
       }
       return session;
     },
     async jwt({ token, user }) {
-      if (user?.role) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
         token.role = user.role;
       }
       return token;
@@ -58,7 +77,7 @@ export const authOptions: AuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: "jwt" as const, // ✅ Corrected to use 'as const'
+    strategy: "jwt",
   },
 };
 
