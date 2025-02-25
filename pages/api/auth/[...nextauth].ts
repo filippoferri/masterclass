@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -33,15 +33,19 @@ export const authOptions = {
           throw new Error("Invalid credentials");
         }
 
-        // Return user object with role
-        return { id: user.id, email: user.email, role: user.role };
+        // Return user object with minimal fields
+        return {
+          id: user.id,
+          email: user.email,
+          role: user.role, // Ensure role is included
+        };
       },
     }),
   ],
   callbacks: {
     async session({ session, token }) {
       if (token?.role) {
-        session.user = { ...session.user, role: token.role };
+        session.user.role = token.role;
       }
       return session;
     },
@@ -53,7 +57,9 @@ export const authOptions = {
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
-  session: { strategy: "jwt" },
+  session: {
+    strategy: "jwt" as const, // ✅ Corrected to use 'as const'
+  },
 };
 
 export default NextAuth(authOptions);
