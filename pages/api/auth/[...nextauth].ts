@@ -5,12 +5,14 @@ import bcrypt from "bcryptjs";
 
 // Extend NextAuth types
 declare module "next-auth" {
+  interface User {
+    id: string;
+    email: string;
+    role: string; // ✅ Explicitly add role to User type
+  }
+
   interface Session {
-    user: {
-      id: string;
-      email: string;
-      role: string;
-    } & DefaultSession["user"];
+    user: User & DefaultSession["user"];
   }
 
   interface JWT {
@@ -61,19 +63,19 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async session({ session, token }) {
-      if (token?.role) {
-        session.user.role = token.role as string; // ✅ Explicitly assert type
-      }
+      session.user.id = token.id;
+      session.user.email = token.email;
+      session.user.role = token.role; // ✅ TypeScript now recognizes role
       return session;
     },
     async jwt({ token, user }) {
-      if (user?.role) {
+      if (user) {
         token.id = user.id;
         token.email = user.email;
-        token.role = user.role as string; // ✅ Ensure it's a string
+        token.role = user.role; // ✅ No need for type assertion now
       }
       return token;
-    },
+    }
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
