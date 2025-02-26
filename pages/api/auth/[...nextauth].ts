@@ -62,15 +62,15 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (token?.role) {
-        session.user.role = token.role; // ✅ Now TypeScript recognizes role
+        session.user.role = token.role as string; // ✅ Explicitly assert type
       }
       return session;
     },
     async jwt({ token, user }) {
-      if (user) {
+      if (user?.role) {
         token.id = user.id;
         token.email = user.email;
-        token.role = user.role;
+        token.role = user.role as string; // ✅ Ensure it's a string
       }
       return token;
     },
