@@ -59,7 +59,7 @@
                     hour: "2-digit",
                     minute: "2-digit",
                 })}`,
-                subtitle: `Inizia tra ${Math.max(Math.ceil((videoDate - now) / 1000 / 60), 0)} minuti`,
+                subtitle: `Inizia tra ${Math.max(Math.ceil(((videoDate?.getTime() || 0) - (now?.getTime() || 0)) / 1000 / 60), 0)} minuti`,                
                 valid: videoDate > now, // Show only if the event hasn't passed
                 },
                 {
@@ -68,8 +68,7 @@
                     hour: "2-digit",
                     minute: "2-digit",
                 })}`,
-                subtitle: `Inizia tra ${Math.max(Math.ceil((tomorrowDate - now) / 1000 / 60 / 60), 0)} ore`,
-                valid: true, // Always show tomorrow's option
+                subtitle: `Inizia tra ${Math.max(Math.ceil(((videoDate?.getTime() || 0) - (now?.getTime() || 0)) / 1000 / 60 /  60), 0)} ore`,                valid: true, // Always show tomorrow's option
                 },
             ].filter((option) => option.valid); // Remove invalid options
 
