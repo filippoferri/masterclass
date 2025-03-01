@@ -46,7 +46,7 @@
                 const eventTime = new Date();
                 eventTime.setHours(hours, minutes, 0, 0);
     
-                setTimeLeft(eventTime > now ? (eventTime - now) / 1000 : null);
+                setTimeLeft(eventTime.getTime() > now.getTime() ? (eventTime.getTime() - now.getTime()) / 1000 : null);
             } catch (err: any) {
                 console.error("Error fetching masterclass data:", err);
                 setError(err.message);
