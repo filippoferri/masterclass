@@ -78,9 +78,14 @@
     if (!masterclass) return <p>Loading...</p>;
 
     // Funzione per formattare la data in italiano
-    const formatDate = (time) => {
-        const options = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
-        return new Date().toLocaleDateString("it-IT", options);
+    const formatDate = (time: Date) => {
+        const options: Intl.DateTimeFormatOptions = { 
+            weekday: "long", 
+            day: "numeric", 
+            month: "long", 
+            year: "numeric" 
+        };
+        return time.toLocaleDateString("it-IT", options);
     };
 
     const formatTime = (time) => {
