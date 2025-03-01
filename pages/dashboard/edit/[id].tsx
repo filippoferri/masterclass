@@ -220,10 +220,18 @@ export default function EditMasterclass() {
         <div className="flex-1">
             <label className="block mb-1 font-medium">Time (HH:MM) *</label>
             <input
-            type="time"
-            className="w-full p-2 border"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
+                type="time"
+                className="w-full p-2 border"
+                value={time}
+                onChange={(e) => {
+                  const timeValue = e.target.value; // Get "HH:MM"
+                  setTime(timeValue); // Store the time for UI display
+
+                  // Convert time to seconds
+                  const [hours, minutes] = timeValue.split(":").map(Number);
+                  const totalSeconds = hours * 3600 + minutes * 60; // Convert HH:MM to total seconds
+                  setDuration(totalSeconds); // Store total seconds
+                }}
             />
         </div>
         <div className="flex-1">
