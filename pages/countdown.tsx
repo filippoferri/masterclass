@@ -112,19 +112,19 @@
                                 <div className="mt-6 flex flex-col items-center space-x-4 p-4 rounded-lg bg-gray-100 w-full">
                     {timeLeft !== null ? (
                     <div>
-                        <div className="text-sm uppercase text-white mb-1 text-center font-bold">Inizia tra...</div>    
+                        <div className="text-sm uppercase text-black mb-1 text-center font-bold">Inizia tra...</div>    
                         <div className="flex space-x-4 text-center">
-                            <div className="text-2xl text-black font-bold">
-                                {Math.floor((timeLeft || 0) / 86400)} <span className="block text-sm text-white uppercase">Giorni</span>
+                            <div className="text-2xl text-accent font-bold">
+                                {Math.floor((timeLeft || 0) / 86400)} <span className="block text-sm text-black uppercase">Giorni</span>
                             </div>
-                            <div className="text-2xl text-black font-bold">
-                                {Math.floor(((timeLeft || 0) % 86400) / 3600)} <span className="block text-sm text-white uppercase">Ore</span>
+                            <div className="text-2xl text-accent font-bold">
+                                {Math.floor(((timeLeft || 0) % 86400) / 3600)} <span className="block text-sm text-black uppercase">Ore</span>
                             </div>
-                            <div className="text-2xl text-black font-bold">
-                                {Math.floor(((timeLeft || 0) % 3600) / 60)} <span className="block text-sm text-white uppercase">Minuti</span>
+                            <div className="text-2xl text-accent font-bold">
+                                {Math.floor(((timeLeft || 0) % 3600) / 60)} <span className="block text-sm text-black uppercase">Minuti</span>
                             </div>
-                            <div className="text-2xl text-black font-bold">
-                                {Math.floor((timeLeft || 0) % 60)} <span className="block text-sm text-white uppercase">Secondi</span>
+                            <div className="text-2xl text-accent font-bold">
+                                {Math.floor((timeLeft || 0) % 60)} <span className="block text-sm text-black uppercase">Secondi</span>
                             </div>
                         </div>
                     </div>

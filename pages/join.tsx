@@ -82,9 +82,9 @@
             
                 try {
                     if (selectedOption === "yesterday") {
-                        router.push(`/webinar?videoId=${masterclassId}`);
+                        router.push(`/event?id=${masterclassId}`);
                     } else {
-                        const response = await fetch("/api/sendfox", {
+                        const response = await fetch("/api/resend", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -93,6 +93,7 @@
                                 name: formData.name,
                                 email: formData.email,
                                 masterclassId,
+                                masterclass: masterclass.title,
                             }),
                         });
             
@@ -230,8 +231,8 @@
                                         setShowDropdown(false);
                                     }}
                                 >
-                                <p className="font-bold">{option.label}</p>
-                                <p className="text-sm text-gray-500">{option.subtitle}</p>
+                                    <p className="font-bold">{option.label}</p>
+                                    <p className="text-sm text-gray-500">{option.subtitle}</p>
                                 </div>
                             ))}
                             </div>
