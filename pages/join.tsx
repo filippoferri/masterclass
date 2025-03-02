@@ -48,27 +48,27 @@
             //filter past events
             const options = [
                 {
-                id: "yesterday",
-                label: "Guarda ora la registrazione di ieri",
-                subtitle: "Inizia immediatamente",
-                valid: true, // Always show yesterday's option
+                    id: "yesterday",
+                    label: "Guarda ora la registrazione di ieri",
+                    subtitle: "Inizia immediatamente",
+                    valid: true, // Always show yesterday's option
                 },
                 {
-                id: "today",
-                label: `Oggi alle ${videoDate.toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                })}`,
-                subtitle: `Inizia tra ${Math.max(Math.ceil(((videoDate?.getTime() || 0) - (now?.getTime() || 0)) / 1000 / 60), 0)} minuti`,                
-                valid: videoDate > now, // Show only if the event hasn't passed
+                    id: "today",
+                    label: `Oggi alle ${videoDate.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    })}`,
+                    subtitle: `Inizia tra ${Math.max(Math.ceil(((videoDate?.getTime() || 0) - (now?.getTime() || 0)) / 1000 / 60), 0)} minuti`,                
+                    valid: videoDate > now, // Show only if the event hasn't passed
                 },
                 {
-                id: "tomorrow",
-                label: `Domani alle ${tomorrowDate.toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                })}`,
-                subtitle: `Inizia tra ${Math.max(Math.ceil(((videoDate?.getTime() || 0) - (now?.getTime() || 0)) / 1000 / 60 /  60), 0)} ore`,                valid: true, // Always show tomorrow's option
+                    id: "tomorrow",
+                    label: `Domani alle ${tomorrowDate.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    })}`,
+                    subtitle: `Inizia tra ${Math.max(Math.ceil(((videoDate?.getTime() || 0) - (now?.getTime() || 0)) / 1000 / 60 /  60), 0)} ore`,                valid: true, // Always show tomorrow's option
                 },
             ].filter((option) => option.valid); // Remove invalid options
 
@@ -81,8 +81,8 @@
                 }
             
                 try {
-                    if (selectedOption === "yesterday") {
-                        router.push(`/event?id=${masterclassId}`);
+                    if (selectedOption.id === "yesterday") {
+                        router.push(`/event?id=${masterclassId}&user=${formData.name}`);
                     } else {
                         const response = await fetch("/api/resend", {
                             method: "POST",
@@ -101,7 +101,7 @@
                             throw new Error("Failed to register user");
                         }
             
-                        router.push(`/thankyou?id=${masterclassId}`);
+                        router.push(`/thankyou?id=${masterclassId}&user=${formData.name}`);
                     }
                 } catch (error) {
                     console.error("Errore nella registrazione:", error);
@@ -213,7 +213,7 @@
                             onClick={toggleDropdown}
                         >
                             {selectedOption ? (
-                            <span>{selectedOption}</span>
+                            <span>{selectedOption.label}</span>
                             ) : (
                             "Seleziona la data..."
                             )}
@@ -227,7 +227,7 @@
                                     key={option.id}
                                     className="px-4 py-3 hover:bg-gray-100 cursor-pointer"
                                     onClick={() => {
-                                        setSelectedOption(option.label);
+                                        setSelectedOption({ id: option.id, label: option.label });
                                         setShowDropdown(false);
                                     }}
                                 >

@@ -105,7 +105,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 .footer span,
                 .footer a {
                     color: #000000;
-                    font-size: 12px;
+                    font-size: 14px;
                     text-align: center;
                 }
                 /* -------------------------------------
@@ -335,7 +335,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     <td class="container">
                     <div class="content">
                         <!-- START CENTERED WHITE CONTAINER -->
-                        <span class="preheader">Complimenti per esserti registrato alla Masterclass "${masterclass}".</span>
+                        <span class="preheader">Complimenti per esserti registrato alla Masterclass gratuita <b>"${masterclass}"</b>.</span>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="main">
 
                         <!-- START MAIN CONTENT AREA -->
@@ -345,11 +345,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                             <p>Complimenti per esserti registrato alla Masterclass "${masterclass}".</p>
                             <p class="mt16 mb16">Il link all'evento è questo: <a href="${mainUrl}/countdown?id=${masterclassId}">Masterclass</a></p>
                             <p>Ti invito ad accedere <b>qualche minuto prima dell’inizio</b> in modo da controllare che la connessione funzioni e che tutto sia corretto, così da non perdere neanche un secondo!</p>
-                            <p>Procurati carta e penna per prendere appunti e segnarti le informazioni che ti possono essere più utili.</p
-                            <p><b>La tua attenzione sarà essenziale.</b></p>
-                            <p>Affronteremo moltissimi argomenti interessanti e specifici perché il mio obiettivo è quello di darti strumenti altamente professionali per ampliare le tue competenze e aiutarti a fare quel cambiamento che desideri.</p>
+                            <p>Procurati <b>carta e penna</b> per prendere appunti e segnarti le informazioni che ti possono essere più utili.</p
+                            <p><b>La tua attenzione sarà essenziale.</b></br>
+                            <p>Affronteremo moltissimi argomenti interessanti e specifici perché il mio obiettivo è quello di darti <b>strumenti altamente professionali per ampliare le tue competenze</b> e aiutarti a fare quel cambiamento che desideri.</p>
                             <p class="mt16 mb16">Questo il link per partecipare: <a href="${mainUrl}/countdown?id=${masterclassId}">Masterclass</a></p>
-                            <p><b>Grazie per la tua registrazione, ti aspetto online.</b></p>
+                            <p><b>Grazie per la tua registrazione, <b>ti aspetto online</b>.</b></p>
                             <p>A presto,<br />Filippo</p>
                             </td>
                         </tr>
